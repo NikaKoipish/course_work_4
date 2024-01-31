@@ -48,11 +48,11 @@ class HeadHunterApi(APImanager):
                 vacancy_info = {
                     'name_vacancy': vac.get('name'),
                     'url': vac.get('alternate_url'),
-                    'requirements': vac.get('candidat'),
+                    'requirements': vac.get('snippet').get('requirements'),
                     'employer': vac.get('employer').get('name'),
                     'city': vac.get('area').get('name'),
-                    'salary_from': vac['salary'].get('from') if vac['salary'] else None,
-                    'salary_to': vac['salary'].get('to') if vac['salary'] else None
+                    'salary_from': vac['salary'].get('from') if vac['salary'] else 0,
+                    'salary_to': vac['salary'].get('to') if vac['salary'] else 0
                 }
             except (KeyError, TypeError, IndexError, ValueError):
                 print("Информации по заданным параметрам не найдено")
@@ -99,8 +99,8 @@ class SuperJobApi(APImanager):
                     'requirements': vac.get('candidat'),
                     'employer': vac.get('firm_name'),
                     'city': vac.get('town').get('title'),
-                    'salary_from': vac['payment_from'] if vac['payment_from'] else None,
-                    'salary_to': vac['payment_to'] if vac['payment_to'] else None
+                    'salary_from': vac['payment_from'] if vac['payment_from'] else 0,
+                    'salary_to': vac['payment_to'] if vac['payment_to'] else 0
                 }
             except (KeyError, TypeError, IndexError, ValueError):
                 print("Информации по заданным параметрам не найдено")
