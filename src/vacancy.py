@@ -11,6 +11,12 @@ class Vacancy:
     def __str__(self):
         return f'{self.name_vacancy}\n{self.employer}'
 
+    def __ge__(self, other):
+        return self.salary_from >= other.salary_from
+
+    def __le__(self, other):
+        return self.salary_from <= other.salary_from
+
     def validate_data(self):
         """Функция для валидации данных"""
         if self.name_vacancy is None:
